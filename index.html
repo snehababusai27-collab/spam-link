@@ -46,6 +46,12 @@ button {
   font-size: 16px;
   cursor: pointer;
 }
+
+.choice {
+  display: none;
+  gap: 20px;
+  justify-content: center;
+}
 </style>
 </head>
 
@@ -53,11 +59,20 @@ button {
 
 <div class="card">
   <h1>💖 Muhilan & Sneha 💖</h1>
-  <p id="story"></p>
+
+  <p id="story">Click Next 💗</p>
+
   <button id="nextBtn">Next</button>
+
+  <div class="choice" id="choices">
+    <button onclick="openForm()">💖 YES</button>
+    <button onclick="openForm()">❌ NO</button>
+  </div>
 </div>
 
 <script>
+const formLink = "https://docs.google.com/forms/d/e/1FAIpQLSf8BMgbmm6vwZ--xtYAI2MzIG4uSKu_Z6NAsxraR-2qAoW3lw/viewform?usp=dialog";
+
 const story = [
 "📅 September 15, 2022\nHi Sneha Day",
 "📅 October 12, 2022\nFirst connect in Cliq",
@@ -80,24 +95,31 @@ const story = [
 "📅 April 25, 2024\nFirst beach outing",
 "📅 November 16, 2025\nTrichy meeting – Poetry café",
 "",
-"💍 After everything we’ve been through —\n\nThe fights,\nthe misunderstandings,\nthe waiting,\nthe hoping…\n\nI don’t promise a perfect life.\n\nBut I promise honesty, effort, respect,\nand choosing you — every single day."
+"💍 After everything we’ve been through —\n\nThe fights,\nthe misunderstandings,\nthe waiting,\nthe hoping…\n\nI don’t promise a perfect life.\n\nBut I promise honesty, effort, respect,\nand choosing you — every single day.\n\nWill you marry me?"
 ];
 
 let i = 0;
 const text = document.getElementById("story");
-const btn = document.getElementById("nextBtn");
+const nextBtn = document.getElementById("nextBtn");
+const choices = document.getElementById("choices");
 
-btn.onclick = () => {
+nextBtn.onclick = () => {
   if (i < story.length) {
     text.innerText = story[i];
     i++;
     if (i === story.length) {
-      btn.style.display = "none";
+      nextBtn.style.display = "none";
+      choices.style.display = "flex";
     }
   }
 };
+
+function openForm() {
+  window.open(formLink, "_blank");
+}
 </script>
 
 </body>
 </html>
+
 
