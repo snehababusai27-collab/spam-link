@@ -12,17 +12,18 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: Arial, sans-serif;
+  font-family: 'Comic Sans MS', cursive;
+  overflow: hidden;
 }
 
 .card {
   background: white;
-  padding: 30px;
-  border-radius: 20px;
+  padding: 26px;
+  border-radius: 22px;
   width: 95%;
   max-width: 520px;
   text-align: center;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
 }
 
 h1 {
@@ -30,20 +31,20 @@ h1 {
 }
 
 p {
-  font-size: 16px;
-  color: #333;
+  font-size: 15px;
+  color: #444;
   white-space: pre-line;
-  min-height: 180px;
+  min-height: 200px;
 }
 
 button {
-  margin-top: 20px;
+  margin-top: 18px;
   background: #ff4d6d;
   color: white;
   border: none;
   padding: 14px 28px;
   border-radius: 30px;
-  font-size: 16px;
+  font-size: 17px;
   cursor: pointer;
 }
 
@@ -52,6 +53,18 @@ button {
   gap: 20px;
   justify-content: center;
 }
+
+.heart {
+  position: absolute;
+  font-size: 20px;
+  animation: float 6s linear infinite;
+  opacity: 0.7;
+}
+
+@keyframes float {
+  from { transform: translateY(100vh); }
+  to { transform: translateY(-10vh); }
+}
 </style>
 </head>
 
@@ -59,43 +72,70 @@ button {
 
 <div class="card">
   <h1>💖 Muhilan & Sneha 💖</h1>
+  <p id="story"></p>
 
-  <p id="story">Click Next 💗</p>
-
-  <button id="nextBtn">Next</button>
+  <button id="nextBtn" onclick="next()">💗 Next 💗</button>
 
   <div class="choice" id="choices">
-    <button onclick="openForm()">💖 YES</button>
-    <button onclick="openForm()">❌ NO</button>
+    <button onclick="answer()">💖 YES</button>
+    <button onclick="answer()">❌ NO</button>
   </div>
 </div>
 
 <script>
-const formLink = "https://docs.google.com/forms/d/e/1FAIpQLSf8BMgbmm6vwZ--xtYAI2MzIG4uSKu_Z6NAsxraR-2qAoW3lw/viewform?usp=dialog";
+const formLink = "https://docs.google.com/forms/d/e/1FAIpQLSf8BMgbmm6vwZ--xtYAI2MzIG4uSKu_Z6NAsxraR-2qAoW3lw/viewform";
 
 const story = [
-"📅 September 15, 2022\nHi Sneha Day",
+"📅 September 15, 2022\n\"Hi Sneha Day\"",
 "📅 October 12, 2022\nFirst connect in Cliq",
-"📅 November 11, 2022\nSneha expressed vulnerability to Muhilan",
+"📅 November 11, 2022\nGanesh escalation – Sneha expressed vulnerability to Muhilan",
 "📅 November 15, 2022\nSneha’s first birthday gift to Muhilan",
 "📅 November 26, 2022\nFirst video call – Vikram’s Birthday",
-"📅 December 6, 2022\nFirst 12 AM birthday wish",
-"📅 December 10, 2022\nFirst meeting – Board room",
-"📅 December 25, 2022\nT-shirt & denim opinion",
-"📅 January 19, 2023\nFirst gift to Sneha – Watch",
+"📅 December 6, 2022\nSneha’s first wish at 12 AM for Muhilan’s birthday",
+"📅 December 10, 2022\nBoard room – First Meeting",
+"📅 December 25, 2022\nMuhilan asked Sneha’s opinion on t-shirt and denim selection",
+"📅 January 19, 2023\nMuhilan’s first gift to Sneha – Watch",
 "📅 January 21, 2023\nSecond meeting – Barbeque",
-"📅 January 27, 2023\n“Aval” song sent",
-"📅 February 1, 2023\nResignation",
-"📅 February 23, 2023\nSurprise Trichy visit",
-"📅 March 8, 2023\nFirst movie together",
-"📅 June 3, 2023\nSneha proposed",
-"📅 August 20, 2023\nFirst kiss and cuddle",
+"📅 January 27, 2023\nSent “Aval” song for the first time",
+"📅 February 1, 2023\nMuhilan’s resignation",
+"📅 February 4, 2023\nPradeep Kumar concert – vibed for “Aval” together virtually",
+"📅 February 23, 2023\nMuhilan’s surprise Trichy visit – 3rd meeting – Super Star Pizza",
+"📅 March 8, 2023\nFirst movie watched together – Teleparty – Nitham Oru Vaanam",
+"📅 April 18, 2023\nPeople First interview – Dad and Muhilan first meeting",
+"📅 April 29, 2023\nSneha’s resignation from SPS",
+"📅 April 29, 2023\nSneha’s Chennai visit for checking hostel – First misunderstanding",
+"📅 May 2, 2023\nSneha’s last working day at SPS",
+"📅 May 12, 2023\nMuhilan’s surprise visit at Chavala tea shop",
+"📅 May 21, 2023\nLet’s bowl day – Muhilan discussed alliance at home",
+"📅 May 26, 2023\nMuhilan’s birthday gift to Sneha – Plant and light",
+"📅 May 26, 2023\n“You make me such a happy girl day” – First hug photo",
+"📅 June 3, 2023\nSneha proposed to Muhilan",
+"📅 June 12, 2023\nFirst time Sneha sat on Muhilan’s lap in the park",
+"📅 June 29, 2023\nConvo café – First date in Sneha’s mind",
+"📅 July 26, 2023\nMuhilan said Sneha’s “I love you” felt pressurizing",
+"📅 August 2, 2023\nMuhilan said “No” – First kiss on the forehead",
+"📅 August 20, 2023\nThe best day – First kiss and cuddle together",
+"📅 August 31, 2023\nFirst virtual tour – code word",
+"📅 September 3, 2023\nFirst major misunderstanding – Ice cream shop visit",
+"📅 October 3, 2023\nMuhilan got Sneha pani puri",
 "📅 November 27, 2023\nMatrimony subscribed",
-"📅 January 21, 2024\nSecond bus trip",
-"📅 April 25, 2024\nFirst beach outing",
-"📅 November 16, 2025\nTrichy meeting – Poetry café",
+"📅 December 26, 2023\nFlood spoiled Muhilan’s birthday together",
+"📅 January 21, 2024\nSecond bus trip – Another bestest day",
+"📅 February 5, 2024\nSneha shifted to Nakshatra",
+"📅 February 28, 2024\nInRn interview at park with my lucky charm",
+"📅 March 22, 2024\nFlight ticket – Major misunderstanding",
+"📅 March 24, 2024\nMuhilan’s Thailand trip",
+"📅 April 23, 2024\nMuhilan confessed opening up things – parents were not okay",
+"📅 April 25, 2024\nSneha and Muhilan’s first beach outing",
+"📅 May 2, 2024\nSneha’s first flat",
+"📅 May 6, 2024\nMuhilan opened up a few things in Ambasamudram",
+"📅 May 24, 2024\nSneha’s birthday with Muhilan’s cute cake",
+"📅 June 21–22, 2024\nSneha’s Chennai visit and crucial life discussions",
+"📅 September 7, 2024\nTrain meeting",
+"📅 February 18, 2025\nChennai visit after a tiring work meetup",
+"📅 November 16, 2025\nTrichy meeting – date after a long time in Poetry Café",
 "",
-"💍 After everything we’ve been through —\n\nThe fights,\nthe misunderstandings,\nthe waiting,\nthe hoping…\n\nI don’t promise a perfect life.\n\nBut I promise honesty, effort, respect,\nand choosing you — every single day.\n\nWill you marry me?"
+"💍 After all this…\nEvery fight.\nEvery misunderstanding.\nEvery effort.\n\nWill you marry me?"
 ];
 
 let i = 0;
@@ -103,7 +143,7 @@ const text = document.getElementById("story");
 const nextBtn = document.getElementById("nextBtn");
 const choices = document.getElementById("choices");
 
-nextBtn.onclick = () => {
+function next() {
   if (i < story.length) {
     text.innerText = story[i];
     i++;
@@ -112,14 +152,24 @@ nextBtn.onclick = () => {
       choices.style.display = "flex";
     }
   }
-};
+}
 
-function openForm() {
+function answer() {
   window.open(formLink, "_blank");
 }
+
+setInterval(() => {
+  const h = document.createElement("div");
+  h.className = "heart";
+  h.innerText = "💖";
+  h.style.left = Math.random() * 100 + "vw";
+  document.body.appendChild(h);
+  setTimeout(() => h.remove(), 6000);
+}, 700);
 </script>
 
 </body>
 </html>
+
 
 
