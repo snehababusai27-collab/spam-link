@@ -1,16 +1,103 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Test Page</title>
+<meta charset="UTF-8">
+<title>Muhilan ❤️ Sneha</title>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, sans-serif;
+}
+
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  width: 95%;
+  max-width: 520px;
+  text-align: center;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+}
+
+h1 {
+  color: #ff4d6d;
+}
+
+p {
+  font-size: 16px;
+  color: #333;
+  white-space: pre-line;
+  min-height: 180px;
+}
+
+button {
+  margin-top: 20px;
+  background: #ff4d6d;
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+}
+</style>
 </head>
-<body style="font-family: Arial; text-align:center; margin-top:100px;">
 
-  <h1>Hello 👋</h1>
-  <p>If this button works, we are safe.</p>
+<body>
 
-  <button onclick="alert('Button works!')">
-    Click me
-  </button>
+<div class="card">
+  <h1>💖 Muhilan & Sneha 💖</h1>
+  <p id="story"></p>
+  <button id="nextBtn">Next</button>
+</div>
+
+<script>
+const story = [
+"📅 September 15, 2022\nHi Sneha Day",
+"📅 October 12, 2022\nFirst connect in Cliq",
+"📅 November 11, 2022\nSneha expressed vulnerability to Muhilan",
+"📅 November 15, 2022\nSneha’s first birthday gift to Muhilan",
+"📅 November 26, 2022\nFirst video call – Vikram’s Birthday",
+"📅 December 6, 2022\nFirst 12 AM birthday wish",
+"📅 December 10, 2022\nFirst meeting – Board room",
+"📅 December 25, 2022\nT-shirt & denim opinion",
+"📅 January 19, 2023\nFirst gift to Sneha – Watch",
+"📅 January 21, 2023\nSecond meeting – Barbeque",
+"📅 January 27, 2023\n“Aval” song sent",
+"📅 February 1, 2023\nResignation",
+"📅 February 23, 2023\nSurprise Trichy visit",
+"📅 March 8, 2023\nFirst movie together",
+"📅 June 3, 2023\nSneha proposed",
+"📅 August 20, 2023\nFirst kiss and cuddle",
+"📅 November 27, 2023\nMatrimony subscribed",
+"📅 January 21, 2024\nSecond bus trip",
+"📅 April 25, 2024\nFirst beach outing",
+"📅 November 16, 2025\nTrichy meeting – Poetry café",
+"",
+"💍 After everything we’ve been through —\n\nThe fights,\nthe misunderstandings,\nthe waiting,\nthe hoping…\n\nI don’t promise a perfect life.\n\nBut I promise honesty, effort, respect,\nand choosing you — every single day."
+];
+
+let i = 0;
+const text = document.getElementById("story");
+const btn = document.getElementById("nextBtn");
+
+btn.onclick = () => {
+  if (i < story.length) {
+    text.innerText = story[i];
+    i++;
+    if (i === story.length) {
+      btn.style.display = "none";
+    }
+  }
+};
+</script>
 
 </body>
 </html>
+
